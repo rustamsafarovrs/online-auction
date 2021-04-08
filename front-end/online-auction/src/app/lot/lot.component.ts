@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Lot } from '../_services/lot.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-lot',
@@ -8,15 +8,15 @@ import { Lot } from '../_services/lot.service';
 })
 export class LotComponent implements OnInit {
 
-  @Input() lot: Lot;
+  lotId: number;
 
-  lotString: string;
-
-  constructor() {
+  constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.lotString = JSON.stringify(this.lot);
+    this.route.params.subscribe((params: Params) => {
+      this.lotId = params.id;
+    });
   }
 
 }

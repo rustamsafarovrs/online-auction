@@ -1,2 +1,13 @@
-<app-lot *ngFor="let item of lots" [lot]="item"
-></app-lot>
+<div *ngFor="let item of lots" class="card">
+  <div class="card-body">
+    <div class="image"><img alt="logo" src="assets/auction.jpg"></div>
+    <div class="details ml-3">
+      <h5 class="card-title">
+        <a [routerLink]="['/lot', item.lotId]" href="/lot/{{item.lotId}}">{{item.name}}</a>
+      </h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{item.description}}</h6>
+
+      <a class="btn btn-primary" href="#">Button</a>
+    </div>
+  </div>
+</div>

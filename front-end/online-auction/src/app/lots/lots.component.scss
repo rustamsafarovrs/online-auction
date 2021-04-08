@@ -1,0 +1,23 @@
+.card-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: flex-start;
+}
+
+.image {
+  width: 200px;
+  display: flex;
+  align-self: stretch;
+}
+
+img {
+  display: flex;
+  align-self: stretch;
+  width: 100%;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}

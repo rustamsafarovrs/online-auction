@@ -8,7 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: 'lots', component: LotsComponent },
-  { path: 'lot', component: LotComponent },
+  { path: 'lot/:id', component: LotComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
