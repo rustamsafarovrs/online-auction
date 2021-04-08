@@ -1,23 +1,58 @@
-.card-body {
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: flex-start;
+.post {
+  width: 270px;
+  max-width: 100%;
 }
 
-.image {
-  width: 200px;
-  display: flex;
-  align-self: stretch;
+@media (max-width: 575.98px) {
+  .post {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 img {
-  display: flex;
-  align-self: stretch;
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+}
+
+.countdown {
+  min-height: 35px;
+  display: inline-flex;
+  justify-content: center;
+  text-align: center;
+  max-width: 730px;
+  margin-left: -5px;
+  margin-right: -5px;
+  line-height: 1.2;
+  position: relative;
+  color: rgba(0, 0, 0, 0.55);
+  font-size: 21px;
+  font-weight: 500;
+  background: #e4e4e4;
+  border-radius: 5px;
+  padding: 5px 13px;
+  z-index: 1;
   width: 100%;
 }
 
-.details {
-  display: flex;
-  flex-direction: column;
+.post-price-value {
+  font-size: 47px;
+  display: block;
+  line-height: 1;
+  margin-right: 12px;
+  margin-top: 13px;
+}
+
+.post-price-value:before {
+  content: '$';
+  font-size: 28px;
+  line-height: 1em;
+  vertical-align: top;
+  margin-top: 3px;
+  display: inline-block;
+}
+
+.post-link {
+  margin-top: 6px;
 }

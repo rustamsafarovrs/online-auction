@@ -1,13 +1,20 @@
-<div *ngFor="let item of lots" class="card">
-  <div class="card-body">
-    <div class="image"><img alt="logo" src="assets/auction.jpg"></div>
-    <div class="details ml-3">
-      <h5 class="card-title">
-        <a [routerLink]="['/lot', item.lotId]" href="/lot/{{item.lotId}}">{{item.name}}</a>
-      </h5>
-      <h6 class="card-subtitle mb-2 text-muted">{{item.description}}</h6>
-
-      <a class="btn btn-primary" href="#">Button</a>
+<div class="row">
+  <div *ngFor="let item of lots" class="col-xl-3 col-lg-4 col-sm-6">
+    <div class="post">
+      <div class="countdown">
+        <app-countdown [endTime]="item.ends"></app-countdown>
+      </div>
+      <figure class="post-figure">
+        <img alt="Auction image" height="108" src="assets/auction.jpg" width="270">
+      </figure>
+      <div class="post-caption">
+        <div class="post-price">Price: ${{item.buyPrice}}</div>
+        <div class="post-price-value">386</div>
+        <h5 class="post-link mt-2">
+          <a [routerLink]="['/lot', item.lotId]">{{item.name}}</a>
+        </h5>
+        <a [routerLink]="['/lot', item.lotId]" class="btn btn-primary">Submit a bid</a>
+      </div>
     </div>
   </div>
 </div>

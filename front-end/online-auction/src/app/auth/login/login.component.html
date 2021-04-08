@@ -1,23 +1,18 @@
 <div class="col-12 col-md-6 offset-md-3">
   <form
-    #f="ngForm"
-    (ngSubmit)="f.form.valid && onSubmit()"
+    (ngSubmit)="onSubmit()"
     *ngIf="!isLoggedIn"
-    name="form"
-    novalidate
+    [formGroup]="form"
   >
     <div class="form-group">
       <label for="username">Username</label>
       <input
-        #username="ngModel"
-        [(ngModel)]="form.username"
         class="form-control"
-        name="username"
-        required="required"
+        formControlName="username"
         type="text"
       >
       <div
-        *ngIf="f.submitted && username.invalid"
+        *ngIf="submitted && form.controls.username.errors"
         class="alert alert-danger"
         role="alert"
       >
@@ -27,21 +22,17 @@
     <div class="form-group">
       <label for="password">Password</label>
       <input
-        #password="ngModel"
-        [(ngModel)]="form.password"
         class="form-control"
-        minlength="6"
-        name="password"
-        required="required"
+        formControlName="password"
         type="password"
       >
       <div
-        *ngIf="f.submitted && password.invalid"
+        *ngIf="submitted && form.controls.password.errors"
         class="alert alert-danger"
         role="alert"
       >
-        <div *ngIf="password.errors.required">Password is required</div>
-        <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+        <div *ngIf="form.controls.password.errors.required">Password is required</div>
+        <div *ngIf="form.controls.password.errors.minlength">Password must be at least 6 characters</div>
       </div>
     </div>
 
@@ -52,7 +43,7 @@
     </div>
     <div class="form-group">
       <div
-        *ngIf="f.submitted && isLoginFailed"
+        *ngIf="isLoginFailed"
         class="alert alert-danger"
         role="alert"
       >

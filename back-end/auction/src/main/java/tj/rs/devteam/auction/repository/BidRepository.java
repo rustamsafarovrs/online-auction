@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import tj.rs.devteam.auction.model.Bid;
 
 @Repository
-public interface BidRepository  extends JpaRepository<Bid, Long> {
+public interface BidRepository extends JpaRepository<Bid, Long> {
 
 }

@@ -38,7 +38,6 @@ public class User {
     @Size(max = 120)
     private String password;
 
-
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -46,7 +45,6 @@ public class User {
     )
     @JsonIgnore
     private Set<Role> roles = new HashSet<>();
-
 
     public User() {
     }

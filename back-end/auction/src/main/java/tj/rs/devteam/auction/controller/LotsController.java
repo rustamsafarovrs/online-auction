@@ -2,8 +2,10 @@ package tj.rs.devteam.auction.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import tj.rs.devteam.auction.payload.request.LotsRequest;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import tj.rs.devteam.auction.payload.response.LotsResponse;
 import tj.rs.devteam.auction.repository.LotRepository;
 

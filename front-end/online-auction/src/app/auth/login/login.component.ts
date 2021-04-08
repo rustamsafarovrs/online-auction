@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TokenStorageService } from '../_services/token-storage.service';
-import { AuthService } from '../_services/auth.service';
+import { TokenStorageService } from '../../_services/token-storage.service';
+import { AuthService } from '../../_services/auth.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,9 @@ import { AuthService } from '../_services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  form: any = {};
+  submitted = false;
+
+  form: FormGroup;
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
@@ -20,14 +23,34 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.form = new FormGroup({
+      username: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(20)
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(120)
+      ])
+    });
+
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
     }
+
   }
 
   onSubmit(): void {
-    this.authService.login(this.form).subscribe(
+    this.isLoginFailed = false;
+    this.errorMessage = '';
+    this.submitted = true;
+
+    if (this.form.invalid) {
+      return;
+    }
+    this.authService.login(this.form.value).subscribe(
       data => {
         this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUser(data);
