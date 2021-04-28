@@ -1,0 +1,30 @@
+.loading {
+  opacity: 0;
+  //display: none;
+  position: absolute;
+  margin-left: -24px;
+  margin-top: 6px;
+
+  &.show {
+    opacity: 1;
+    //display: inline-block;
+  }
+}
+
+.show {
+  opacity: 1;
+}
+
+.btn-login, .btn-login > * {
+  transition: margin .5s, opacity .2s;
+
+}
+
+.btn-login .text {
+  //margin-left: -24px;
+}
+
+.btn-login .text.show {
+  margin-left: 0;
+}
+

@@ -35,7 +35,7 @@ public class Lot {
     @Column(name = "ends", nullable = false)
     private Timestamp ends;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 99999)
     private String description;
 
     @Column(name = "buy_price", nullable = false)

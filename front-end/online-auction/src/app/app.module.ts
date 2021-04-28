@@ -13,6 +13,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CountdownComponent } from './countdown/countdown.component';
+import { FormatTimePipe } from './_pipe/format-time.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CountdownComponent } from './countdown/countdown.component';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    CountdownComponent
+    CountdownComponent,
+    FormatTimePipe
   ],
   imports: [
     BrowserModule,

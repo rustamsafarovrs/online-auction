@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { TokenStorageService } from '../../_services/token-storage.service';
-import { AuthService } from '../../_services/auth.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {TokenStorageService} from '../../_services/token-storage.service';
+import {AuthService} from '../../_services/auth.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: [ './login.component.scss' ]
 })
 export class LoginComponent implements OnInit {
 
@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
+  loading = false;
 
   constructor(private tokenStorage: TokenStorageService,
               private authService: AuthService) {
@@ -43,11 +44,28 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (this.loading) {
+      return;
+    }
+    this.loading = true;
+    setTimeout(() => {
+      this.submitForm();
+    }, 1000);
+    // this.submitForm();
+  }
+
+  reloadPage(): void {
+    window.location.reload();
+  }
+
+  submitForm(): void {
+    this.loading = true;
     this.isLoginFailed = false;
     this.errorMessage = '';
     this.submitted = true;
 
     if (this.form.invalid) {
+      this.loading = false;
       return;
     }
     this.authService.login(this.form.value).subscribe(
@@ -59,18 +77,14 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
         this.reloadPage();
-
+        this.loading = false;
       },
       err => {
         this.errorMessage = err.message;
         this.isLoginFailed = true;
-
+        this.loading = false;
       }
     );
-  }
-
-  reloadPage(): void {
-    window.location.reload();
   }
 
 }
