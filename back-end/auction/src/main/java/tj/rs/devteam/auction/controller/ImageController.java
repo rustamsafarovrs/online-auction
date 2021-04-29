@@ -37,14 +37,14 @@ public class ImageController {
     public ResponseEntity<?> uploadImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
         String message = "";
         try {
+            String newName = storageService.save(file);
+
             Image img = new Image();
-            img.setName(file.getOriginalFilename());
+            img.setName(newName);
             img.setType(file.getContentType());
             mImageRepository.save(img);
 
-            storageService.save(file);
-
-            message = "Uploaded the file successfully: " + file.getOriginalFilename();
+            message = "Uploaded the file successfully: " + file.getOriginalFilename() + ", new name: " + newName;
             return ResponseEntity.ok(new MessageResponse(message));
         } catch (Exception e) {
             message = "Could not upload the file: " + file.getOriginalFilename() + "!";

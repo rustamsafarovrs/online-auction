@@ -1,8 +1,7 @@
 package tj.rs.devteam.auction.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -16,8 +15,7 @@ import java.util.Set;
         @UniqueConstraint(columnNames = "username"),
         @UniqueConstraint(columnNames = "email")
 })
-@Getter
-@Setter
+@Data
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,6 +43,10 @@ public class User {
     )
     @JsonIgnore
     private Set<Role> roles = new HashSet<>();
+
+    @OneToOne
+    @JoinColumn(name = "image_id", unique = true, nullable = true)
+    private Image profileImage;
 
     public User() {
     }

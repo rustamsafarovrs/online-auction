@@ -22,4 +22,5 @@ public class Image {
     private String name;
     @Column(name = "type")
     private String type;
+
 }
