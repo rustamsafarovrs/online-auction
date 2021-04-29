@@ -1,1 +1,42 @@
-<p>profile works!</p>
+<div class="container ">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Upload Image</h1>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+      <input type="file"
+             (change)="onFileChanged($event)">
+
+      <input type="button" (click)="onUpload()" value="Upload">
+
+
+    </div>
+  </div>
+</div>
+
+<div class="container row">
+  <div class="col-md-6">
+    <input type="text" class="form-control" id="name" placeholder="image name" [(ngModel)]="imageName"
+           name="name"/>
+  </div>
+  <div class="col-md-6">
+    <input type="button" (click)="getImage()" value="Get Image">
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div *ngIf=retrievedImage>
+        <img [src]="retrievedImage">
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TokenStorageService} from '../../_services/token-storage.service';
 import {AuthService} from '../../_services/auth.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -20,10 +21,14 @@ export class LoginComponent implements OnInit {
   loading = false;
 
   constructor(private tokenStorage: TokenStorageService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
+    if (this.tokenStorage.getUser() !== null) {
+      this.router.navigate([ '/' ]);
+    }
     this.form = new FormGroup({
       username: new FormControl('', [
         Validators.required,

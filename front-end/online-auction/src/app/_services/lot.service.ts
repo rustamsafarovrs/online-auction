@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { User } from './auth.service';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {User} from './auth.service';
+import {Observable} from 'rxjs';
 
-export const BASE_API = 'http://localhost:8080/api';
+export const BASE_URL = 'http://localhost:8080';
+export const BASE_API = BASE_URL + '/api';
 
 export interface Lot {
   lotId: number;

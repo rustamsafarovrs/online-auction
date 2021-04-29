@@ -1,30 +1,28 @@
+.button , .button * {
+  //transition: all 1s;
+}
 .loading {
   opacity: 0;
-  //display: none;
-  position: absolute;
-  margin-left: -24px;
-  margin-top: 6px;
 
   &.show {
     opacity: 1;
-    //display: inline-block;
+
   }
 }
 
-.show {
-  opacity: 1;
+.w-100 {
+  width: 100%;
 }
 
-.btn-login, .btn-login > * {
-  transition: margin .5s, opacity .2s;
-
+.btn-login * {
+  //transition: all 0.5s;
 }
 
 .btn-login .text {
-  //margin-left: -24px;
-}
+  //position: absolute;
+  //transform: translateX(-54px);
 
-.btn-login .text.show {
-  margin-left: 0;
+  &.show {
+    //transform: translateX(0);
+  }
 }
-

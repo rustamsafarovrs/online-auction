@@ -17,26 +17,13 @@ export class CountdownComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // const now = moment();
-    // this.timer = moment(this.endTime).diff(now);
-    // const utcDate = new Date(this.endTime)
-    // // const seconds = ((millis % 60000) / 1000).toFixed(0);
-    // // console.log(millis);
-    //
-    // var utc = Math.floor(utcDate.getTime() * 1000 / 1000)
-    // console.log(utc);
-    // console.log(Date.now());
-    //
-    // this.timer = utc - Date.now();
-    // console.log(Date.now());
-
-    // console.log(this.endTime);
-    console.log(new Date(Date.now()));
-    console.log(new Date(this.endTime));
-    let dStart = new Date(Date.now()).getTime();
-    let dEnd = (new Date(this.endTime)).setHours((new Date(this.endTime)).getHours() - 5);
+    const dStart = new Date(Date.now()).getTime();
+    const dEnd = (new Date(this.endTime)).setHours((new Date(this.endTime)).getHours() - 5);
     this.timer = (dEnd - dStart) / 1000;
 
+    if (this.timer < 0) {
+      this.timer = 0;
+    }
 
     this.startCountdown();
   }
