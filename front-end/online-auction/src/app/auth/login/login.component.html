@@ -13,7 +13,7 @@
       >
       <div
         *ngIf="submitted && form.controls.username.errors"
-        class="alert alert-danger"
+        class="alert alert-danger mt-1"
         role="alert"
       >
         Username is required!
@@ -28,7 +28,7 @@
       >
       <div
         *ngIf="submitted && form.controls.password.errors"
-        class="alert alert-danger"
+        class="alert alert-danger mt-1"
         role="alert"
       >
         <div *ngIf="form.controls.password.errors.required">Password is required</div>
@@ -37,8 +37,8 @@
     </div>
 
     <div class="form-group">
-      <button class="btn btn-primary btn-login w-100" [disabled]="loading">
-        <span class="spinner-border spinner-border-sm loading position-relative" role="status" aria-hidden="true" [class.show]="loading"></span>
+      <button class="btn btn-primary btn-login btn-block" [disabled]="loading">
+        <span class="spinner-border spinner-border-sm loading" role="status" aria-hidden="true" [class.show]="loading"></span>
         <span class="text" [class.show]="loading" [class.d-none]="loading">Login</span>
       </button>
     </div>

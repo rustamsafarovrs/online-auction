@@ -14,6 +14,8 @@ import { RegisterComponent } from './auth/register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CountdownComponent } from './countdown/countdown.component';
 import { FormatTimePipe } from './_pipe/format-time.pipe';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import {ErrorHandler} from './_shared/error-handler';
 
 @NgModule({
   declarations: [
@@ -32,9 +34,10 @@ import { FormatTimePipe } from './_pipe/format-time.pipe';
     FormsModule,
     HttpClientModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SweetAlert2Module.forRoot()
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders, ErrorHandler],
   bootstrap: [AppComponent]
 })
 export class AppModule {

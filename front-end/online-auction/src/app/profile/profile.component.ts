@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BASE_API, BASE_URL} from '../_services/lot.service';
+import {ErrorHandler} from "../_shared/error-handler";
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +10,8 @@ import {BASE_API, BASE_URL} from '../_services/lot.service';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private errorHandler: ErrorHandler) {
 
   }
 
@@ -37,7 +39,7 @@ export class ProfileComponent implements OnInit {
         }, 500);
       },
       (err) => {
-        alert(err);
+        this.errorHandler.handleError(err);
       }
     );
     this.loading = false;

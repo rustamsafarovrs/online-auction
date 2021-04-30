@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {TokenStorageService} from '../../_services/token-storage.service';
 import {AuthService} from '../../_services/auth.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
+import {ErrorHandler} from "../../_shared/error-handler";
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private tokenStorage: TokenStorageService,
               private authService: AuthService,
-              private router: Router) {
+              private router: Router,
+              private errorHandler: ErrorHandler) {
   }
 
   ngOnInit(): void {
@@ -55,7 +57,7 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     setTimeout(() => {
       this.submitForm();
-    }, 1000);
+    }, 10);
     // this.submitForm();
   }
 
@@ -74,7 +76,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.authService.login(this.form.value).subscribe(
-      data => {
+      (data) => {
         this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUser(data);
 
@@ -84,10 +86,17 @@ export class LoginComponent implements OnInit {
         this.reloadPage();
         this.loading = false;
       },
-      err => {
-        this.errorMessage = err.message;
+      (err) => {
+        if (err.status === 401) {
+          this.errorMessage = 'Invalid login and/or password';
+
+        } else {
+          this.errorMessage = err.message;
+          this.errorHandler.handleError(err);
+        }
         this.isLoginFailed = true;
         this.loading = false;
+
       }
     );
   }
