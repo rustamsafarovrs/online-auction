@@ -1,10 +1,16 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {User} from './auth.service';
 import {Observable} from 'rxjs';
 
 export const BASE_URL = 'http://localhost:8080';
 export const BASE_API = BASE_URL + '/api';
+
+export interface Image {
+  id: number;
+  name: string;
+  type: string;
+}
 
 export interface Lot {
   lotId: number;
@@ -18,6 +24,7 @@ export interface Lot {
   buyPrice: number;
   bids: Bid[];
   seller: User;
+  images: Array<Image>;
 
 }
 
@@ -34,13 +41,13 @@ export interface LotResponse {
   page: number;
 }
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class LotService {
   constructor(private http: HttpClient) {
   }
 
-  get(page: number): Observable<any> {
-    return this.http.get(BASE_API + '/lots');
+  get(params: HttpParams): Observable<any> {
+    return this.http.get(BASE_API + '/lots', {params});
   }
 
 }

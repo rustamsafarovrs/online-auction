@@ -11,5 +11,6 @@ import java.util.List;
 public class LotsResponse {
     private List<Lot> lots;
     private Integer page;
-
+    private Long totalItems;
+    private Integer totalPages;
 }

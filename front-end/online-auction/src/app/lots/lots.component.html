@@ -1,15 +1,15 @@
-<div class="row">
-  <div *ngFor="let item of lots" class="col-xl-3 col-lg-4 col-sm-6">
+<div class="row mb-4">
+  <div *ngFor="let item of lots" class="col-xl-3 col-lg-4 col-sm-6 mt-3">
     <div class="post">
       <div class="countdown">
         <app-countdown [endTime]="item.ends"></app-countdown>
       </div>
       <figure class="post-figure">
-        <img alt="Auction image" height="108" src="assets/auction.jpg" width="270">
+        <img alt="Auction image" [src]="item.images.length > 0 ? imagesUrl+item.images[0].name : 'assets/auction.jpg'" >
       </figure>
       <div class="post-caption">
         <div class="post-price">Price: ${{item.buyPrice}}</div>
-        <div class="post-price-value">386</div>
+        <div class="post-price-value">{{item.currently}}</div>
         <h5 class="post-link mt-2">
           <a [routerLink]="['/lot', item.lotId]">{{item.name}}</a>
         </h5>
