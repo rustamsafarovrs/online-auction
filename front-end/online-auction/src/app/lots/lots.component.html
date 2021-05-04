@@ -1,11 +1,14 @@
 <div class="row mb-4">
   <div *ngFor="let item of lots" class="col-xl-3 col-lg-4 col-sm-6 mt-3">
-    <div class="post">
+    <div
+      *ngIf="!loading"
+      class="post">
       <div class="countdown">
         <app-countdown [endTime]="item.ends"></app-countdown>
       </div>
       <figure class="post-figure">
-        <img alt="Auction image" [src]="item.images.length > 0 ? imagesUrl+item.images[0].name : 'assets/auction.jpg'" >
+        <img alt="Auction image"
+             [src]="item.images.length > 0 ? imagesUrl+item.images[0].name : 'assets/auction.jpg'">
       </figure>
       <div class="post-caption">
         <div class="post-price">Price: ${{item.buyPrice}}</div>
@@ -13,8 +16,28 @@
         <h5 class="post-link mt-2">
           <a [routerLink]="['/lot', item.lotId]">{{item.name}}</a>
         </h5>
-        <a [routerLink]="['/lot', item.lotId]" class="btn btn-primary">Submit a bid</a>
       </div>
+      <a [routerLink]="['/lot', item.lotId]" class="btn btn-primary">Submit a bid</a>
     </div>
   </div>
+
+  <div class="col-md-12 text-center" *ngIf="loading">
+    <img src="assets/Rolling-1s-200px.svg" alt="Loading..." width="40">
+    <h3>Loading...</h3>
+  </div>
+
+</div>
+
+<div class="row">
+  <ul class="pagination pagination-sm ml-auto mr-auto">
+    <li class="page-item">
+      <button class="page-link" (click)="onPageSelect(0)">First</button>
+    </li>
+    <li class="page-item" *ngFor="let currentPage of totalPages; let i = index">
+      <button class="page-link" (click)="onPageSelect(i)">{{i + 1}}</button>
+    </li>
+    <li class="page-item">
+      <button class="page-link" (click)="onPageSelect(totalPages.length-1)">Last</button>
+    </li>
+  </ul>
 </div>

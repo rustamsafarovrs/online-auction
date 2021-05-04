@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {BASE_URL, Lot, LotService} from '../_services/lot.service';
 import {ErrorHandler} from '../_shared/error-handler';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {HttpParams} from '@angular/common/http';
+import {relative} from "@angular/compiler-cli/src/ngtsc/file_system";
 
 @Component({
   selector: 'app-lots',
@@ -17,26 +18,29 @@ export class LotsComponent implements OnInit {
   page: number;
   size: number;
 
-  constructor(private lotService: LotService, private errorHandler: ErrorHandler, private route: ActivatedRoute) {
+  totalPages = [];
+  params: HttpParams;
+
+  loading = true;
+
+  constructor(
+    private lotService: LotService,
+    private errorHandler: ErrorHandler,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
   }
 
   ngOnInit(): void {
-    const params = this.initQueryParams();
+    this.params = this.initQueryParams();
 
-    this.lotService.get(params).subscribe(
-      (data) => {
-        this.lots = data.lots;
-      },
-      (err) => {
-        this.errorHandler.handleError(err);
-      }
-    );
+    this.getLots();
   }
 
   private initQueryParams(): HttpParams {
     this.route.queryParams.subscribe((qp) => {
       if (qp.q !== null) {
-        this.q   = qp.q;
+        this.q = qp.q;
       }
       if (qp.page !== null) {
         this.page = qp.page;
@@ -58,5 +62,39 @@ export class LotsComponent implements OnInit {
     }
 
     return params;
+  }
+
+  onPageSelect(i: number): void {
+    // todo check page increment for another variant
+    i = i + 1;
+    this.params = this.params.set('page', i.toString());
+    this.getLots();
+  }
+
+  private getLots(): void {
+    this.loading = true;
+    this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: {
+          page: this.params.get('page'),
+          q: this.params.get('q'),
+          size: this.params.get('size')
+        },
+        queryParamsHandling: 'merge'
+      }
+    );
+    setTimeout(() => {
+      this.lotService.get(this.params).subscribe(
+        (data) => {
+          this.lots = data.lots;
+          this.totalPages = new Array(data.totalPages);
+          this.loading = false;
+        },
+        (err) => {
+          this.errorHandler.handleError(err);
+          this.loading = false;
+        }
+      );
+    }, 1);
   }
 }
