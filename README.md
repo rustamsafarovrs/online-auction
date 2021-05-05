@@ -1,7 +1,7 @@
 # Online Auction
 Simple web application simulating auction. Using Spring Boot, Spring Data, Angular
 
-### System description
+## System description
 The system is built following the web browser/REST server architecture. The architecture is presented in the following figure:
 
 
@@ -13,7 +13,7 @@ The Hibernate ORM framework was employed for the Data Access Layer and Spring MV
 The REST API is secured with token-based authentication, implemented using Spring security.
 The front-end was written in Angular.
 
-### Technologies
+## Technologies
 - Spring Boot
 - Spring Data
 - Spring Security
