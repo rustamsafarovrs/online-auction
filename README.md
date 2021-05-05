@@ -31,7 +31,7 @@ The front-end was written in Angular.
 1. In command line go to folder /front-end/online-auction.
 2. Run npm install.
 3. Run ng build.
-4. Open path http://localhost:8080/auctions-web/app.
+4. Open path http://localhost:4200/.
 
 ## Technologies
 - Spring Boot
