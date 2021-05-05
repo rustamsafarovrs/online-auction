@@ -41,10 +41,15 @@ export class LotsComponent implements OnInit {
       if (qp.q !== null) {
         this.q = qp.q;
       }
-      if (qp.page !== null) {
+      if (qp.page > 0) {
         this.page = qp.page;
+      } else {
+        this.page = 0;
+        if (!this.loading) {
+          this.onPageSelect(0);
+        }
       }
-      if (qp.size !== null) {
+      if (qp.size > 0) {
         this.size = qp.size;
       }
     });
