@@ -3,7 +3,6 @@ import {BASE_URL, Lot, LotService} from '../_services/lot.service';
 import {ErrorHandler} from '../_shared/error-handler';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpParams} from '@angular/common/http';
-import {relative} from "@angular/compiler-cli/src/ngtsc/file_system";
 
 @Component({
   selector: 'app-lots',
@@ -65,7 +64,7 @@ export class LotsComponent implements OnInit {
   }
 
   onPageSelect(i: number): void {
-    // todo check page increment for another variant
+    // todo find another variant
     i = i + 1;
     this.params = this.params.set('page', i.toString());
     this.getLots();

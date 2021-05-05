@@ -21,10 +21,10 @@ public class LotsController {
 
     @GetMapping(value = {"/", ""})
     public ResponseEntity<?> lots(@RequestParam(required = false) String q,
-                                  @RequestParam(defaultValue = "0") int page,
+                                  @RequestParam(defaultValue = "1") int page,
                                   @RequestParam(defaultValue = "8") int size) {
         try {
-            Pageable paging = PageRequest.of(page, size);
+            Pageable paging = PageRequest.of(page - 1, size);
 
             Page<Lot> pageLots;
 
