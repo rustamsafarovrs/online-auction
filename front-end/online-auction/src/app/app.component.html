@@ -1,13 +1,11 @@
 <div id="app">
-  <nav class="navbar navbar-expand  navbar-light bg-light">
+  <nav class="navbar navbar-expand d-xl-none d-xl-flex navbar-light bg-light">
     <a class="navbar-brand" href="/" routerLink="lots"><img src="/assets/logo.png" height="30" alt="logo"></a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item">
         <a class="nav-link" href="/lots" routerLink="lots" routerLinkActive="active">Home</a>
       </li>
-      <li class="nav-item">
-        <a *ngIf="isLoggedIn" class="nav-link" href="/user" routerLink="user" routerLinkActive="active">User</a>
-      </li>
+
     </ul>
 
     <ul *ngIf="!isLoggedIn" class="navbar-nav ml-auto">

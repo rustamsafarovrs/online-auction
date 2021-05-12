@@ -1,1 +1,13 @@
-<p>lot id: {{lotId}}</p>
+<div class="row">
+  <div class="col-12 col-md-6">
+    <gallery [items]="images$ | async" [loop]="false" [counterPosition]="'bottom'" ></gallery>
+  </div>
+  <div class="col-12 col-md-6">
+    <p>{{lot.buyPrice}}</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <p>{{lot.description}}</p>
+  </div>
+</div>

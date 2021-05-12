@@ -50,4 +50,8 @@ export class LotService {
     return this.http.get(BASE_API + '/lots', {params});
   }
 
+  getLot(id: number): Observable<any> {
+    return this.http.get<any>(BASE_API + '/lot/' + id);
+  }
+
 }

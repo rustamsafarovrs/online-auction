@@ -12,6 +12,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~11.2.8",
+    "@angular/cdk": "^11.2.12",
     "@angular/common": "~11.2.8",
     "@angular/compiler": "~11.2.8",
     "@angular/core": "~11.2.8",
@@ -24,6 +25,7 @@
     "@sweetalert2/ngx-sweetalert2": "^9.0.0",
     "bootstrap": "^4.5.0",
     "moment": "^2.29.1",
+    "ng-gallery": "^5.0.0",
     "rxjs": "~6.6.0",
     "sweetalert2": "^10.16.6",
     "tslib": "^2.0.0",

@@ -24,7 +24,7 @@ public class LotsController {
                                   @RequestParam(defaultValue = "1") int page,
                                   @RequestParam(defaultValue = "8") int size) {
         try {
-           // Thread.sleep(6000);
+            // Thread.sleep(6000);
             Pageable paging = PageRequest.of(page - 1, size);
 
             Page<Lot> pageLots;
