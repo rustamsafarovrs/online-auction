@@ -55,6 +55,6 @@ public class Lot {
             joinColumns = @JoinColumn(name = "lot_id"),
             inverseJoinColumns = @JoinColumn(name = "image_id")
     )
-    private Set<Image> images= new HashSet<>();
+    private Set<Image> images = new HashSet<>();
 
 }

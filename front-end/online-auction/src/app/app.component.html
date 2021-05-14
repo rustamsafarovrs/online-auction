@@ -3,29 +3,37 @@
     <a class="navbar-brand" href="/" routerLink="lots"><img src="/assets/logo.png" height="30" alt="logo"></a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item">
-        <a class="nav-link" href="/lots" routerLink="lots" routerLinkActive="active">Home</a>
+        <a class="nav-link" routerLink="lots" routerLinkActive="active" i18n>Home</a>
       </li>
 
     </ul>
 
     <ul *ngIf="!isLoggedIn" class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link" href="/register" routerLink="register" routerLinkActive="active">Sign Up</a>
+        <a class="nav-link" routerLink="register" routerLinkActive="active" i18n>Sign Up</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/login" routerLink="login" routerLinkActive="active">Login</a>
+        <a class="nav-link" routerLink="login" routerLinkActive="active" i18n>Login</a>
       </li>
     </ul>
 
     <ul *ngIf="isLoggedIn" class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link" href="/profile" routerLink="profile">{{ username }}</a>
+        <a class="nav-link" routerLink="profile">{{ username }}</a>
       </li>
       <li class="nav-item">
-        <a (click)="logout()" class="nav-link" href>Logout</a>
+        <a (click)="logout()" class="nav-link" i18n>Logout</a>
       </li>
     </ul>
   </nav>
+
+  <ul>
+    <li *ngFor="let locale of localesList">
+      <a routerLink="/{{locale.code}}/">
+        {{locale.label}}
+      </a>
+    </li>
+  </ul>
 
   <main class="container mt-3">
     <router-outlet></router-outlet>

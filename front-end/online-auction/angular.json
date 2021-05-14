@@ -8,6 +8,12 @@
   "projects": {
     "online-auction": {
       "projectType": "application",
+      "i18n": {
+        "locales": {
+          "en": "src/locale/messages.xlf",
+          "ru": "src/locale/messages.ru.xlf"
+        }
+      },
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
@@ -62,6 +68,12 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "en": {
+              "localize": ["en"]
+            },
+            "ru": {
+              "localize": ["ru"]
             }
           }
         },
@@ -73,6 +85,12 @@
           "configurations": {
             "production": {
               "browserTarget": "online-auction:build:production"
+            },
+            "en": {
+              "browserTarget": "online-auction:build:en"
+            },
+            "ru": {
+              "browserTarget": "online-auction:build:ru"
             }
           }
         },
