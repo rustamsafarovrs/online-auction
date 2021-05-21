@@ -31,13 +31,14 @@
 <div class="row">
   <ul class="pagination pagination-sm ml-auto mr-auto">
     <li class="page-item" [class.disabled]="page==1">
-      <button class="page-link" (click)="onPageSelect(0)">First</button>
+      <button class="page-link" (click)="onPageSelect(1)">First</button>
     </li>
     <li class="page-item" [class.active]="page==(i+1)" *ngFor="let currentPage of totalPages; let i = index">
-      <button class="page-link" (click)="onPageSelect(i)">{{i + 1}}</button>
+      <button class="page-link" (click)="onPageSelect(i+1)">{{i + 1}}</button>
     </li>
     <li class="page-item" [class.disabled]="page==totalPages.length">
-      <button class="page-link" (click)="onPageSelect(totalPages.length-1)">Last</button>
+      <button class="page-link" (click)="onPageSelect(totalPages.length)">Last</button>
     </li>
   </ul>
 </div>
+

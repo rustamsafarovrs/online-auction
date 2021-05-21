@@ -46,7 +46,7 @@ export class LotsComponent implements OnInit {
       } else {
         this.page = 0;
         if (!this.loading) {
-          this.onPageSelect(0);
+          this.onPageSelect(1);
         }
       }
       if (qp.size > 0) {
@@ -69,8 +69,6 @@ export class LotsComponent implements OnInit {
   }
 
   onPageSelect(i: number): void {
-    // todo find another variant
-    i = i + 1;
     this.params = this.params.set('page', i.toString());
     this.getLots();
   }

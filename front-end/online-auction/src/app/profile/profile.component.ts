@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BASE_API, BASE_URL} from '../_services/lot.service';
-import {ErrorHandler} from "../_shared/error-handler";
+import {ErrorHandler} from '../_shared/error-handler';
 
 @Component({
   selector: 'app-profile',

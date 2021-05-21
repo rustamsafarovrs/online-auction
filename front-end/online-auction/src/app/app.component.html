@@ -27,13 +27,14 @@
     </ul>
   </nav>
 
-  <ul>
-    <li *ngFor="let locale of localesList">
-      <a routerLink="/{{locale.code}}/">
-        {{locale.label}}
-      </a>
-    </li>
-  </ul>
+<!--  todo language -->
+<!--  <ul>-->
+<!--    <li *ngFor="let locale of localesList">-->
+<!--      <a routerLink="/{{locale.code}}/">-->
+<!--        {{locale.label}}-->
+<!--      </a>-->
+<!--    </li>-->
+<!--  </ul>-->
 
   <main class="container mt-3">
     <router-outlet></router-outlet>
