@@ -16,6 +16,8 @@ export class LotsComponent implements OnInit {
   q: string;
   page: number;
   size: number;
+  collectionSize: number;
+  ngPage: number;
 
   totalPages = [];
   params: HttpParams;
@@ -28,29 +30,30 @@ export class LotsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
-  }
-
-  ngOnInit(): void {
     this.params = this.initQueryParams();
 
     this.getLots();
   }
 
+  ngOnInit(): void {
+    console.log('on init');
+  }
+
   private initQueryParams(): HttpParams {
-    this.route.queryParams.subscribe((qp) => {
-      if (qp.q !== null) {
-        this.q = qp.q;
+    this.route.queryParams.subscribe((qParams) => {
+      if (qParams.q !== null) {
+        this.q = qParams.q;
       }
-      if (qp.page > 0) {
-        this.page = qp.page;
+      if (qParams.page > 0) {
+        this.page = qParams.page;
       } else {
-        this.page = 0;
+        this.page = 1;
         if (!this.loading) {
           this.onPageSelect(1);
         }
       }
-      if (qp.size > 0) {
-        this.size = qp.size;
+      if (qParams.size > 0) {
+        this.size = qParams.size;
       }
     });
 
@@ -69,6 +72,9 @@ export class LotsComponent implements OnInit {
   }
 
   onPageSelect(i: number): void {
+    if (i < 1 || isNaN(i)) {
+      return;
+    }
     this.params = this.params.set('page', i.toString());
     this.getLots();
   }
@@ -90,6 +96,10 @@ export class LotsComponent implements OnInit {
         (data) => {
           this.lots = data.lots;
           this.totalPages = new Array(data.totalPages);
+          this.collectionSize = data.totalItems;
+          this.page = data.page + 1;
+          this.ngPage = data.page + 1;
+          this.size = data.size;
           this.loading = false;
         },
         (err) => {
@@ -97,6 +107,6 @@ export class LotsComponent implements OnInit {
           this.loading = false;
         }
       );
-    }, 1);
+    }, 1200);
   }
 }

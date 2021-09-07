@@ -1,8 +1,6 @@
 <div class="row mb-4">
   <div *ngFor="let item of lots" class="col-xl-3 col-lg-4 col-sm-6 mt-3">
-    <div
-      *ngIf="!loading"
-      class="post h-100 ">
+    <div *ngIf="!loading" class="post h-100 ">
       <div class="countdown">
         <app-countdown [endTime]="item.ends"></app-countdown>
       </div>
@@ -21,24 +19,21 @@
     </div>
   </div>
 
-  <div class="col-md-12 text-center" *ngIf="loading">
+  <div class="col-md-12 text-center" style="margin: auto;" *ngIf="loading">
     <img src="assets/Rolling-1s-200px.svg" alt="Loading..." width="40">
     <h3>Loading...</h3>
   </div>
 
 </div>
 
-<div class="row">
-  <ul class="pagination pagination-sm ml-auto mr-auto">
-    <li class="page-item" [class.disabled]="page==1">
-      <button class="page-link" (click)="onPageSelect(1)">First</button>
-    </li>
-    <li class="page-item" [class.active]="page==(i+1)" *ngFor="let currentPage of totalPages; let i = index">
-      <button class="page-link" (click)="onPageSelect(i+1)">{{i + 1}}</button>
-    </li>
-    <li class="page-item" [class.disabled]="page==totalPages.length">
-      <button class="page-link" (click)="onPageSelect(totalPages.length)">Last</button>
-    </li>
-  </ul>
+<div class="row mt-4" *ngIf="!loading">
+  <div class="col-12 d-flex justify-content-center">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="ngPage" [maxSize]="5" [rotate]="true" [pageSize]="8"
+                    [boundaryLinks]="true" (pageChange)="onPageSelect($event)" size="sm">
+      <ng-template ngbPaginationPrevious>Prev</ng-template>
+      <ng-template ngbPaginationNext>Next</ng-template>
+      <ng-template ngbPaginationFirst>First</ng-template>
+      <ng-template ngbPaginationLast>Last</ng-template>
+    </ngb-pagination>
+  </div>
 </div>
-
